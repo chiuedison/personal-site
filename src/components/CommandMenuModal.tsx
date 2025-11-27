@@ -48,10 +48,10 @@ export function CommandMenuModal({ open: controlledOpen, onOpenChange, changeVie
         }
       }}
     >
-      <div className="w-full max-w-lg bg-paper border border-ink/10 shadow-2xl overflow-hidden rounded-xl font-serif animate-fade-in">
+      <div className="w-full max-w-lg bg-[#FAF9F6] backdrop-blur-md border border-ink/20 shadow-2xl overflow-hidden rounded-xl font-serif animate-fade-in relative">
         <Command.Input 
           placeholder="Type a command or search..."
-          className="w-full p-4 text-lg bg-transparent border-b border-ink/10 outline-none placeholder:text-ink-light/40 text-ink"
+          className="w-full p-4 text-lg bg-transparent border-b-dashed-custom outline-none placeholder:text-ink-light/40 text-ink"
         />
         
         <CommandMenuContent 
@@ -62,7 +62,7 @@ export function CommandMenuModal({ open: controlledOpen, onOpenChange, changeVie
           }} 
         />
 
-        <div className="p-2 border-t border-ink/10 text-[10px] text-ink-light/40 font-sans uppercase tracking-widest flex justify-between">
+        <div className="p-2 border-t border-ink/10 text-[10px] text-ink-light/40 font-sans uppercase tracking-widest flex justify-between bg-ink/5">
           <span>Cmd+K to open</span>
           <span>Esc to close</span>
         </div>

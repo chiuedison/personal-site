@@ -23,6 +23,45 @@ function App() {
   const trailRef = useRef<Point[]>([])
   const requestRef = useRef<number>(0)
 
+  // Global Keyboard Shortcuts
+  useEffect(() => {
+    const handleGlobalKeyDown = (e: KeyboardEvent) => {
+      // Allow global shortcuts even if input is focused, IF they use a modifier
+      const isInput = e.target instanceof HTMLInputElement || e.target instanceof HTMLTextAreaElement;
+
+      // Navigation (Single keys, blocked by input)
+      if (!isInput && !e.metaKey && !e.ctrlKey && !e.altKey && !e.shiftKey) {
+        switch (e.key.toLowerCase()) {
+          case 'h': setView('home'); break
+          case 'a': setView('about'); break
+          case 'w': setView('work'); break
+          case 'c': setView('contact'); break
+        }
+      }
+
+      // Actions (Modifier keys, work everywhere)
+      if (e.metaKey || e.ctrlKey) {
+        switch (e.key.toLowerCase()) {
+          case 'b': 
+            e.preventDefault(); 
+            window.open('https://cal.com/edison', '_blank'); 
+            break;
+          case 'x': 
+            e.preventDefault(); 
+            window.open('https://aspect.inc', '_blank'); 
+            break;
+          case 's': 
+            e.preventDefault(); 
+            window.open('https://github.com/chiuedison/personal-site', '_blank'); 
+            break;
+        }
+      }
+    }
+
+    window.addEventListener('keydown', handleGlobalKeyDown)
+    return () => window.removeEventListener('keydown', handleGlobalKeyDown)
+  }, [])
+
   useEffect(() => {
     const handleMouseMove = (e: MouseEvent) => {
       // Optimization: Only add points if distance > 5px or it's been a while
@@ -113,7 +152,7 @@ function App() {
   }, [])
 
   return (
-    <div className="min-h-screen bg-paper bg-noise text-ink font-serif selection:bg-ink selection:text-paper flex flex-col items-center pt-12 pb-6 px-6 relative overflow-x-hidden">
+    <div className="min-h-screen bg-paper/80 bg-noise text-ink font-serif selection:bg-ink/75 selection:text-paper flex flex-col items-center pt-12 pb-6 px-6 relative overflow-x-hidden">
       
       {/* Grid Backgrounds */}
       <div className="absolute inset-0 pointer-events-none z-0 bg-grid-pattern opacity-[0.6] h-full" />

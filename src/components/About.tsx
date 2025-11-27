@@ -53,7 +53,7 @@ export function About() {
 
         {/* Portrait Column */}
         <div 
-          className={`hidden md:flex flex-col items-center gap-2 transition-opacity duration-1000 delay-500 ${showContent ? 'opacity-100' : 'opacity-0'}`}
+          className={`hidden md:flex flex-col items-center gap-2 transition-opacity duration-600 delay-500 ${showContent ? 'opacity-100' : 'opacity-0'}`}
         >
           <div className="opacity-75 mix-blend-multiply select-none overflow-hidden border border-ink/10 p-2 bg-paper shadow-sm rotate-1">
             <div className="text-ink">

@@ -13,17 +13,6 @@ export function Home({ changeView }: Props) {
   const commandRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
 
-  // Close when clicking outside
-  useEffect(() => {
-    const handleClickOutside = (event: MouseEvent) => {
-      if (commandRef.current && !commandRef.current.contains(event.target as Node)) {
-        setOpen(false);
-      }
-    };
-    document.addEventListener('mousedown', handleClickOutside);
-    return () => document.removeEventListener('mousedown', handleClickOutside);
-  }, []);
-
   // Handle keyboard interactions
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
@@ -43,6 +32,17 @@ export function Home({ changeView }: Props) {
     return () => document.removeEventListener('keydown', handleKeyDown);
   }, [open]);
 
+  // Close when clicking outside
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (commandRef.current && !commandRef.current.contains(event.target as Node)) {
+        setOpen(false);
+      }
+    };
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => document.removeEventListener('mousedown', handleClickOutside);
+  }, []);
+
   return (
     <div className="relative flex flex-col items-center justify-center min-h-[60vh] text-center animate-fade-in isolation-auto pt-16">
       <div className="space-y-8 relative z-10 w-full max-w-3xl mx-auto">
@@ -55,7 +55,7 @@ export function Home({ changeView }: Props) {
           />
         )}
 
-        <h1 className="text-4xl md:text-5xl font-medium text-ink">{profile.name}</h1>
+        <h1 className="text-4xl md:text-5xl font-medium tracking-tight text-ink">{profile.name}</h1>
         <p className="text-xl text-ink-light font-light leading-relaxed">
           I'm a builder and engineer passionate about infrastructure and AI. Currently building{' '}
           <a 
@@ -75,20 +75,19 @@ export function Home({ changeView }: Props) {
           ref={commandRef}
           className={`
             relative z-50
-            transition-all ease-in-out
-            duration-300
-            bg-paper border border-ink/10 rounded-xl shadow-sm text-left
+            transition-all ease-in-out duration-300
+            bg-[#FAF9F6] backdrop-blur-sm border border-ink/20 rounded-xl shadow-sm text-left
             w-full max-w-3xl mx-auto
             ${open ? 'shadow-2xl scale-[1.02]' : 'hover:border-ink/30 hover:shadow-md'}
           `}
         >
-          <Command className="w-full bg-transparent font-serif shadow-sm">
-            <div className="flex items-center px-4 border-b border-transparent transition-colors" style={{ borderColor: open ? 'rgba(0,0,0,0.1)' : 'transparent' }}>
+          <Command className="w-full bg-transparent font-serif">
+            <div className={`flex items-center px-4 transition-all ${open ? 'border-b-dashed-custom' : ''}`} style={{ borderColor: open ? 'rgba(0,0,0,0.2)' : 'transparent' }}>
               <Command.Input 
                 ref={inputRef}
                 placeholder="Type a command or search..."
                 onFocus={() => setOpen(true)}
-                className="w-full py-4 text-lg bg-transparent outline-none placeholder:text-ink-light/40 text-ink"
+                className={`w-full py-4 text-lg bg-transparent outline-none placeholder:text-ink-light/40 text-ink transition-all`} 
               />
               {!open && (
                 <div className="text-xs font-sans text-ink-light/30 uppercase tracking-widest pointer-events-none shrink-0 ml-4">
@@ -105,7 +104,7 @@ export function Home({ changeView }: Props) {
                 onSelect={() => setOpen(false)} 
               />
               
-              <div className="p-2 border-t border-ink/10 text-[10px] text-ink-light/40 font-sans uppercase tracking-widest flex justify-between">
+              <div className="p-2 border-t border-ink/10 text-[10px] text-ink-light/40 font-sans uppercase tracking-widest flex justify-between bg-ink/5">
                 <span>Cmd+K to open</span>
                 <span>Esc to close</span>
               </div>
@@ -116,4 +115,3 @@ export function Home({ changeView }: Props) {
     </div>
   );
 }
-

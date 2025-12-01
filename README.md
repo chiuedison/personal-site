@@ -1,4 +1,4 @@
-# Edison Chiu
+# Edison Chiu's Personal Site
 
 Welcome to my corner of the internet. It's built to look like a schematic, feel like a terminal, and run like a modern web app.
 

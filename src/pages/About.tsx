@@ -21,9 +21,9 @@ export function About() {
       </header>
       
       <div className={`transition-all duration-500 ease-out ${showContent ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
-        {/* Portrait - Floated Right */}
+        {/* Portrait - Floated Right on Desktop, Stacked on Mobile */}
         <div 
-          className="hidden md:flex flex-col items-center gap-2 float-right ml-8 mb-6 relative z-10"
+          className="flex flex-col items-center gap-2 md:float-right md:ml-8 md:mb-6 mb-8 relative z-10"
         >
           <div className="opacity-75 mix-blend-multiply select-none overflow-hidden border border-ink/10 p-2 bg-paper shadow-sm rotate-1">
             <div className="text-ink">

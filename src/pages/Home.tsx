@@ -1,8 +1,8 @@
 import { useState, useRef, useEffect } from 'react';
 import { Command } from 'cmdk';
 import { profile } from '../data';
-import { CommandMenuContent } from './CommandMenuContent';
-import type { View } from './CommandMenuContent';
+import { CommandMenuContent } from '../components/CommandMenuContent';
+import type { View } from '../components/CommandMenuContent';
 
 interface Props {
   changeView: (view: View) => void;
@@ -55,19 +55,9 @@ export function Home({ changeView }: Props) {
           />
         )}
 
-        <h1 className="text-4xl md:text-5xl font-medium tracking-tight text-ink">{profile.name}</h1>
+        <h1 className="text-4xl md:text-5xl font-medium text-ink">{profile.name}</h1>
         <p className="text-xl text-ink-light font-light leading-relaxed">
-          I'm a builder and engineer passionate about infrastructure and AI. Currently building{' '}
-          <a 
-            href="https://aspect.inc" 
-            target="_blank" 
-            rel="noreferrer" 
-            className="font-medium text-ink underline decoration-ink/30 hover:decoration-ink decoration-1 underline-offset-4 transition-all"
-          >
-            Aspect
-          </a>{' '}
-          with my best friends
-          <span className="animate-blink ml-0.5 font-medium">_</span>
+          {profile.home.description}
         </p>
         
         {/* Inline Command Menu */}

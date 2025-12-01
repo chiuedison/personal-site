@@ -36,7 +36,7 @@ export function CommandMenuContent({ changeView, onSelect }: Props) {
 
       <Command.Group heading="Quick Actions" className="[&_[cmdk-group-heading]]:mt-3 [&_[cmdk-group-heading]]:mb-2 [&_[cmdk-group-heading]]:text-xs [&_[cmdk-group-heading]]:font-sans [&_[cmdk-group-heading]]:text-ink-light/40 [&_[cmdk-group-heading]]:uppercase [&_[cmdk-group-heading]]:tracking-widest [&_[cmdk-group-heading]]:px-2">
         <Item onSelect={() => window.open('https://cal.com/edison', '_blank')} shortcut="⌘B">
-          Book a Call
+          Book a Meeting
         </Item>
         <Item onSelect={() => window.open('https://aspect.inc', '_blank')} shortcut="⌘X">
           Visit Aspect

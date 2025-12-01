@@ -1,13 +1,13 @@
 import { useState } from 'react';
 import { profile } from '../data';
-import { Typewriter } from './Typewriter';
+import { Typewriter } from '../components/Typewriter';
 
 export function Work() {
   const [showContent, setShowContent] = useState(false);
 
   return (
-    <div className="max-w-2xl mx-auto space-y-12 animate-fade-in pb-20">
-      <header className="border-b border-ink/10 pb-8 mb-8">
+    <div className="max-w-2xl mx-auto space-y-12 animate-fade-in pb-20 relative">
+      <header className="border-b border-ink/10 pb-8 mb-8 relative z-10">
         <h1 className="text-3xl font-medium">
           <Typewriter 
             text="Work & Experience" 
@@ -20,9 +20,9 @@ export function Work() {
       </header>
 
       <div className={`transition-all duration-500 ease-out ${showContent ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
-        <div className="space-y-8">
+        <div className="space-y-12">
           {profile.experience.map((role, index) => (
-            <div key={index} className="group">
+            <div key={index} className="group relative">
               <div className="flex flex-col md:flex-row md:justify-between md:items-baseline mb-2">
                 <h3 className="text-xl font-medium text-ink">{role.company}</h3>
                 <span className="font-sans text-sm text-ink-light/50">{role.period}</span>
@@ -36,11 +36,11 @@ export function Work() {
           ))}
         </div>
 
-        <div className="pt-8 border-t border-ink/10">
+        <div className="mt-4 pt-8 border-t border-ink/10 relative">
           <h2 className="text-2xl font-medium mb-6">
             Education
           </h2>
-          <div className="flex justify-between items-baseline">
+          <div className="flex justify-between items-baseline relative z-10">
             <div>
               <h3 className="text-xl font-medium">{profile.education.school}</h3>
               <p className="text-ink-light italic mt-1">{profile.education.degree}</p>

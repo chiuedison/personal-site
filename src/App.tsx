@@ -1,9 +1,9 @@
 import { useState, useEffect, useRef } from 'react'
 import { CommandMenuModal } from './components/CommandMenuModal'
-import { Home } from './components/Home'
-import { About } from './components/About'
-import { Work } from './components/Work'
-import { Contact } from './components/Contact'
+import { Home } from './pages/Home'
+import { About } from './pages/About'
+import { Work } from './pages/Work'
+import { Contact } from './pages/Contact'
 import { Footer } from './components/Footer'
 import { Typewriter } from './components/Typewriter'
 import { profile } from './data'
@@ -64,7 +64,6 @@ function App() {
 
   useEffect(() => {
     const handleMouseMove = (e: MouseEvent) => {
-      // Optimization: Only add points if distance > 5px or it's been a while
       const now = Date.now()
       const lastPoint = trailRef.current[trailRef.current.length - 1]
       
@@ -85,28 +84,16 @@ function App() {
 
     const animate = () => {
       const now = Date.now()
-      // Keep points younger than 600ms (reduced from 1000ms for perf)
       // Filter out old points
-      trailRef.current = trailRef.current.filter(p => now - p.age < 600)
+      trailRef.current = trailRef.current.filter(p => now - p.age < 1200)
 
       if (highlightRef.current) {
-        // Base mask for the current cursor (the "blob")
-        // We can keep the CSS-defined mask for the main cursor, and append trail masks?
-        // No, mask-image overrides. We need to reconstruct the whole mask string.
-        // Let's rebuild the main cursor blob + the trail points.
-        
-        // 1. Main Cursor Blob (recreating the CSS logic in JS for consistency)
-        //    This ensures we don't lose the main cursor when we set inline styles.
-        //    Actually, we can read the CSS vars, but easier to just use the last point.
-        //    However, to be robust, let's just use the trail for EVERYTHING.
-        //    The "head" of the trail is the cursor.
-        
         const points = trailRef.current
         
         if (points.length > 0) {
           const maskGradients = points.map(p => {
             const age = now - p.age
-            const life = age / 1000 // 0.0 to 1.0
+            const life = age / 1200 // 0.0 to 1.0
             
             // Fade in (0-30%), then fade out slowly
             // Use ease-out for fade-in to make it smoother
@@ -125,9 +112,6 @@ function App() {
             const size = 80 * opacity // Slightly larger max size
             return `radial-gradient(circle ${size}px at ${p.x}px ${p.y}px, black ${40 * opacity}%, transparent 100%)`
           }).join(', ')
-          
-          // Combine with the "main" blob which is just the latest point(s) but bigger?
-          // Let's stick to just the trail for now, but maybe make the newest points bigger.
           
           highlightRef.current.style.maskImage = maskGradients
           highlightRef.current.style.webkitMaskImage = maskGradients
@@ -152,7 +136,7 @@ function App() {
   }, [])
 
   return (
-    <div className="min-h-screen bg-paper/80 bg-noise text-ink font-serif selection:bg-ink/75 selection:text-paper flex flex-col items-center pt-12 pb-6 px-6 relative overflow-x-hidden">
+    <div className="min-h-screen bg-paper/80 bg-noise text-ink font-serif selection:bg-ink/75 selection:text-paper flex flex-col items-center pt-20 md:pt-16 pb-6 px-6 relative overflow-x-hidden">
       
       {/* Grid Backgrounds */}
       <div className="absolute inset-0 pointer-events-none z-0 bg-grid-pattern opacity-[0.6] h-full" />

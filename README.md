@@ -1,116 +1,47 @@
-# Personal Website
+# Personal Portfolio
 
-A modern personal website built with React, TypeScript, and Vite, deployed on Vercel.
+A "creative code" portfolio site built with React, TypeScript, and Tailwind CSS.
 
-## Getting Started
+## Features
 
-### Development
-
-```bash
-npm install
-npm run dev
-```
-
-The site will be available at `http://localhost:5173`
-
-### Build
-
-```bash
-npm run build
-```
-
-The production build will be in the `dist` directory.
-
-### Preview Production Build
-
-```bash
-npm run preview
-```
-
-## Deployment on Vercel
-
-This project is configured for easy deployment on Vercel:
-
-1. Push your code to GitHub (or another Git provider)
-2. Import your repository in [Vercel](https://vercel.com)
-3. Vercel will automatically detect the Vite framework and configure the build settings
-4. Your site will be deployed automatically on every push to the main branch
-
-The `vercel.json` file is already configured with the correct build settings for Vite.
+- **Parchment Theme:** A unique aesthetic blending classical document style with modern technical schematics.
+- **ASCII Portrait:** A custom React component that converts an image into a high-fidelity ASCII representation.
+- **Typewriter Effect:** Headers and text reveal themselves with a mechanical typing animation.
+- **Interactive Grid:** A background grid system with a "flashlight" reveal effect that follows the mouse and leaves a fading trail.
+- **Command Menu:** A fully functional command palette (accessible via `Cmd+K` or the search bar) for navigation and quick actions.
+- **Responsive Design:** Fully responsive layout that adapts to mobile and desktop screens.
 
 ## Tech Stack
 
-- **React 19** - UI library
-- **TypeScript** - Type safety
-- **Vite** - Build tool and dev server
-- **ESLint** - Code linting
+- **Framework:** [React](https://react.dev/) + [Vite](https://vitejs.dev/)
+- **Language:** [TypeScript](https://www.typescriptlang.org/)
+- **Styling:** [Tailwind CSS](https://tailwindcss.com/) (v4)
+- **Icons:** [Lucide React](https://lucide.dev/)
+- **Command Menu:** [cmdk](https://github.com/pacocoursey/cmdk)
 
-Currently, two official plugins are available:
+## Getting Started
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+1.  Install dependencies:
+    ```bash
+    npm install
+    ```
 
-## React Compiler
+2.  Start the development server:
+    ```bash
+    npm run dev
+    ```
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+3.  Build for production:
+    ```bash
+    npm run build
+    ```
 
-## Expanding the ESLint configuration
+## Customization
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+- **Content:** Edit `src/data.ts` to update your profile, experience, and links.
+- **Portrait:** Replace `public/me.jpg` with your own photo.
+- **Theme:** Adjust colors and grid settings in `src/index.css`.
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+## License
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
-
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
-
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+MIT
